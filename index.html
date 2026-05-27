@@ -11,77 +11,164 @@
       background: #f4f7fb;
       margin: 0;
       padding: 20px;
-      text-align: center;
     }
 
     .container {
-      max-width: 900px;
+      max-width: 800px;
       margin: auto;
       background: white;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
     h1 {
+      text-align: center;
       color: #1d3557;
     }
 
-    .embed-box {
-      position: relative;
+    p {
+      text-align: center;
+      color: #555;
+    }
+
+    .form-group {
+      margin: 20px 0;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input, select {
       width: 100%;
-      padding-top: 112.4451%;
-      overflow: hidden;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
       border-radius: 10px;
+      background: #1d3557;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
       margin-top: 20px;
     }
 
-    .embed-box iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
+    button:hover {
+      background: #274c77;
     }
 
-    .credit {
-      margin-top: 15px;
-      font-size: 14px;
+    .result {
+      margin-top: 30px;
+      padding: 20px;
+      border-radius: 10px;
+      background: #eef4ff;
+      display: none;
     }
 
-    .credit a {
-      color: #0077cc;
-      text-decoration: none;
+    .risk-low {
+      color: green;
+      font-weight: bold;
     }
 
-    .credit a:hover {
-      text-decoration: underline;
+    .risk-medium {
+      color: orange;
+      font-weight: bold;
+    }
+
+    .risk-high {
+      color: red;
+      font-weight: bold;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="container">
-    <h1>Pressure Ulcer Risk Assessment Website</h1>
-    <p>Sleep Positions & Weight-Based Model</p>
+<div class="container">
 
-    <div class="embed-box">
-      <iframe 
-        loading="lazy"
-        src="https://www.canva.com/design/DAHK1rnvAkA/aeOA10TYj1a-UaWsC-p5Rw/view?embed"
-        allowfullscreen>
-      </iframe>
-    </div>
+  <h1>Pressure Ulcer Risk Assessment</h1>
+  <p>Sleep Positions & Weight-Based Model</p>
 
-    <div class="credit">
-      <a href="https://www.canva.com/design/DAHK1rnvAkA/aeOA10TYj1a-UaWsC-p5Rw/view"
-         target="_blank">
-         เปิดงานบน Canva
-      </a>
-    </div>
+  <div class="form-group">
+    <label>น้ำหนักตัว (kg)</label>
+    <input type="number" id="weight" placeholder="กรอกน้ำหนัก">
   </div>
+
+  <div class="form-group">
+    <label>ท่านอน</label>
+    <select id="position">
+      <option value="back">นอนหงาย</option>
+      <option value="side">นอนตะแคง</option>
+      <option value="stomach">นอนคว่ำ</option>
+    </select>
+  </div>
+
+  <button onclick="calculateRisk()">
+    ประเมินความเสี่ยง
+  </button>
+
+  <div class="result" id="result"></div>
+
+</div>
+
+<script>
+function calculateRisk() {
+
+  const weight = parseFloat(document.getElementById("weight").value);
+  const position = document.getElementById("position").value;
+
+  let score = 0;
+
+  if(weight < 50){
+    score += 1;
+  } else if(weight < 80){
+    score += 2;
+  } else {
+    score += 3;
+  }
+
+  if(position === "side"){
+    score += 2;
+  } else if(position === "back"){
+    score += 1;
+  } else {
+    score += 3;
+  }
+
+  const resultBox = document.getElementById("result");
+
+  let riskText = "";
+  let className = "";
+
+  if(score <= 3){
+    riskText = "ความเสี่ยงต่ำ";
+    className = "risk-low";
+  } else if(score <= 5){
+    riskText = "ความเสี่ยงปานกลาง";
+    className = "risk-medium";
+  } else {
+    riskText = "ความเสี่ยงสูง";
+    className = "risk-high";
+  }
+
+  resultBox.style.display = "block";
+
+  resultBox.innerHTML = `
+    <h2>ผลการประเมิน</h2>
+    <p class="${className}">${riskText}</p>
+    <p>คะแนนความเสี่ยง: ${score}</p>
+  `;
+}
+</script>
 
 </body>
 </html>
