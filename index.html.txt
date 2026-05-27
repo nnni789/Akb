@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pressure Ulcer Risk Assessment</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #1d3557;
+    }
+
+    .embed-box {
+      position: relative;
+      width: 100%;
+      padding-top: 112.4451%;
+      overflow: hidden;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    .embed-box iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .credit {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .credit a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+
+    .credit a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Pressure Ulcer Risk Assessment Website</h1>
+    <p>Sleep Positions & Weight-Based Model</p>
+
+    <div class="embed-box">
+      <iframe 
+        loading="lazy"
+        src="https://www.canva.com/design/DAHK1rnvAkA/aeOA10TYj1a-UaWsC-p5Rw/view?embed"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <div class="credit">
+      <a href="https://www.canva.com/design/DAHK1rnvAkA/aeOA10TYj1a-UaWsC-p5Rw/view"
+         target="_blank">
+         เปิดงานบน Canva
+      </a>
+    </div>
+  </div>
+
+</body>
+</html>
